@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Architecture Résidentielle",
+    "description": "Conception de maisons individuelles et villas sur mesure, adaptées à votre mode de vie et à votre terrain.",
+    "icon": "home",
+    "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80"
+  },
+  {
+    "id": 2,
+    "title": "Architecture Commerciale",
+    "description": "Création d'espaces professionnels optimisés : bureaux, commerces, restaurants et locaux d'activité.",
+    "icon": "building",
+    "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80"
+  },
+  {
+    "id": 3,
+    "title": "Rénovation",
+    "description": "Transformation complète de vos espaces existants : rénovation intérieure, extension et modernisation.",
+    "icon": "refresh-cw",
+    "image": "https://images.unsplash.com/photo-1504389557843-d1e695e971a9?w=400&q=80"
+  },
+  {
+    "id": 4,
+    "title": "Modélisation 3D",
+    "description": "Visualisation réaliste de vos projets avec rendus 3D haute qualité et visites virtuelles.",
+    "icon": "box",
+    "image": "https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=400&q=80"
+  },
+  {
+    "id": 5,
+    "title": "Plans 2D/3D",
+    "description": "Établissement de plans techniques détaillés pour tous vos projets de construction.",
+    "icon": "layers",
+    "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80"
+  },
+  {
+    "id": 6,
+    "title": "Suivi de Chantier",
+    "description": "Accompagnement complet de vos projets de la conception à la livraison finale.",
+    "icon": "clipboard",
+    "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=80"
+  }
+]

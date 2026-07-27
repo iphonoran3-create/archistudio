@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Jean Dupont",
+    "project": "Villa Bordeaux",
+    "rating": 5,
+    "comment": "Une équipe exceptionnelle qui a su transformer notre vision en réalité. Le résultat dépasse nos attentes.",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Marie Martin",
+    "project": "Rénovation Paris",
+    "rating": 5,
+    "comment": "Professionnalisme et créativité au rendez-vous. Notre appartement a été complètement transformé.",
+    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
+  }
+]

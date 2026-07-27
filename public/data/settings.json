@@ -1,0 +1,13 @@
+{
+  "siteName": "BATATE",
+  "siteDescription": "Architecture contemporaine et design innovant",
+  "logo": "/logo.svg",
+  "contactEmail": "contact@archistudio.fr",
+  "contactPhone": "+213 562 12 23 04",
+  "address": "algerie",
+  "socialMedia": {
+    "facebook": "https://facebook.com/archistudio",
+    "instagram": "https://instagram.com/archistudio",
+    "linkedin": "https://linkedin.com/company/archistudio"
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Marie Dupont",
+    "role": "Fondatrice & Architecte Principal",
+    "bio": "Architecte DPLG avec 20 ans d'expérience, spécialisée en architecture résidentielle contemporaine.",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Pierre Martin",
+    "role": "Architecte Senior",
+    "bio": "Expert en architecture commerciale et bureaux, passionné par le design durable et innovant.",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Sophie Bernard",
+    "role": "Architecte 3D & Visualisation",
+    "bio": "Spécialiste en modélisation 3D et rendus photoréalistes, donne vie aux projets avant leur construction.",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+  },
+  {
+    "id": 4,
+    "name": "Lucas Moreau",
+    "role": "Architecte Projets Spéciaux",
+    "bio": "Expert en rénovation et transformation d'espaces existants avec une approche créative.",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+  }
+]
