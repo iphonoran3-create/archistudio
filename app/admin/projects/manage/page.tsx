@@ -21,16 +21,12 @@ export default function AdminProjectsManagePage() {
     category: '',
     location: '',
     year: new Date().getFullYear(),
-    surface: 0,
+    area: 0,
     image: '',
     slug: '',
     description: '',
     status: 'new',
-    progress: 0,
-    architect: '',
-    budget: 0,
-    startDate: '',
-    estimatedEnd: ''
+    featured: false
   })
   const [isSaving, setIsSaving] = useState(false)
 
@@ -49,16 +45,12 @@ export default function AdminProjectsManagePage() {
       category: '',
       location: '',
       year: new Date().getFullYear(),
-      surface: 0,
+      area: 0,
       image: '',
       slug: '',
       description: '',
       status: 'new',
-      progress: 0,
-      architect: '',
-      budget: 0,
-      startDate: '',
-      estimatedEnd: ''
+      featured: false
     })
     setIsDialogOpen(true)
   }
@@ -189,25 +181,14 @@ export default function AdminProjectsManagePage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="surface">Surface (m²)</Label>
-                        <Input
-                          id="surface"
-                          type="number"
-                          value={formData.surface}
-                          onChange={(e) => handleChange('surface', parseInt(e.target.value))}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="budget">Budget (€)</Label>
-                        <Input
-                          id="budget"
-                          type="number"
-                          value={formData.budget}
-                          onChange={(e) => handleChange('budget', parseInt(e.target.value))}
-                        />
-                      </div>
+                    <div>
+                      <Label htmlFor="area">Surface (m²)</Label>
+                      <Input
+                        id="area"
+                        type="number"
+                        value={formData.area}
+                        onChange={(e) => handleChange('area', parseInt(e.target.value))}
+                      />
                     </div>
 
                     <div>
@@ -257,45 +238,16 @@ export default function AdminProjectsManagePage() {
                         </select>
                       </div>
                       <div>
-                        <Label htmlFor="progress">Progression (%)</Label>
-                        <Input
-                          id="progress"
-                          type="number"
-                          min="0"
-                          max="100"
-                          value={formData.progress}
-                          onChange={(e) => handleChange('progress', parseInt(e.target.value))}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="architect">Architecte</Label>
-                      <Input
-                        id="architect"
-                        value={formData.architect}
-                        onChange={(e) => handleChange('architect', e.target.value)}
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="startDate">Date de début</Label>
-                        <Input
-                          id="startDate"
-                          type="date"
-                          value={formData.startDate}
-                          onChange={(e) => handleChange('startDate', e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="estimatedEnd">Date de fin estimée</Label>
-                        <Input
-                          id="estimatedEnd"
-                          type="date"
-                          value={formData.estimatedEnd}
-                          onChange={(e) => handleChange('estimatedEnd', e.target.value)}
-                        />
+                        <Label htmlFor="featured">Mis en avant</Label>
+                        <select
+                          id="featured"
+                          value={formData.featured ? 'true' : 'false'}
+                          onChange={(e) => handleChange('featured', e.target.value === 'true')}
+                          className="w-full mt-2 px-3 py-2 border rounded-md"
+                        >
+                          <option value="false">Non</option>
+                          <option value="true">Oui</option>
+                        </select>
                       </div>
                     </div>
 
