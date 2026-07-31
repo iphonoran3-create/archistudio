@@ -6,16 +6,14 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react
 
 export default function Footer() {
   const [settings, setSettings] = useState<any>({
-    siteName: 'Archistudio',
-    siteDescription: 'Architecture, conception et visualisation 3D pour donner vie à vos projets.',
-    contactEmail: 'contact@archistudio.fr',
-    contactPhone: '+33 1 23 45 67 89',
+    site_name: 'Archistudio',
+    description: 'Architecture, conception et visualisation 3D pour donner vie à vos projets.',
+    email: 'contact@archistudio.fr',
+    phone: '+33 1 23 45 67 89',
     address: '123 Rue de l\'Architecture, 75001 Paris, France',
-    socialMedia: {
-      facebook: '#',
-      instagram: '#',
-      linkedin: '#'
-    }
+    facebook: '#',
+    instagram: '#',
+    linkedin: '#'
   })
 
   useEffect(() => {
@@ -33,23 +31,23 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-6">
               <div className="w-10 h-10 bg-white flex items-center justify-center">
-                <span className="text-archi-dark font-serif text-xl font-bold">{settings.siteName.charAt(0)}</span>
+                <span className="text-archi-dark font-serif text-xl font-bold">{settings.site_name?.charAt(0) || 'A'}</span>
               </div>
               <span className="font-serif text-xl font-semibold">
-                {settings.siteName}
+                {settings.site_name || 'Archistudio'}
               </span>
             </div>
             <p className="text-gray-400 mb-6">
-              {settings.siteDescription}
+              {settings.description || 'Architecture, conception et visualisation 3D pour donner vie à vos projets.'}
             </p>
             <div className="flex space-x-4">
-              <a href={settings.socialMedia.facebook} className="text-gray-400 hover:text-white transition-colors">
+              <a href={settings.facebook || '#'} className="text-gray-400 hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href={settings.socialMedia.instagram} className="text-gray-400 hover:text-white transition-colors">
+              <a href={settings.instagram || '#'} className="text-gray-400 hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href={settings.socialMedia.linkedin} className="text-gray-400 hover:text-white transition-colors">
+              <a href={settings.linkedin || '#'} className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -101,19 +99,19 @@ export default function Footer() {
               <li className="flex items-start space-x-3">
                 <MapPin className="text-archi-accent mt-1" size={20} />
                 <span className="text-gray-400">
-                  {settings.address}
+                  {settings.address || 'Paris, France'}
                 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="text-archi-accent" size={20} />
-                <a href={`tel:${settings.contactPhone}`} className="text-gray-400 hover:text-white transition-colors">
-                  {settings.contactPhone}
+                <a href={`tel:${settings.phone || ''}`} className="text-gray-400 hover:text-white transition-colors">
+                  {settings.phone || '+33 1 23 45 67 89'}
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="text-archi-accent" size={20} />
-                <a href={`mailto:${settings.contactEmail}`} className="text-gray-400 hover:text-white transition-colors">
-                  {settings.contactEmail}
+                <a href={`mailto:${settings.email || ''}`} className="text-gray-400 hover:text-white transition-colors">
+                  {settings.email || 'contact@archistudio.fr'}
                 </a>
               </li>
             </ul>
@@ -121,7 +119,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} {settings.siteName}. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} {settings.site_name || 'Archistudio'}. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

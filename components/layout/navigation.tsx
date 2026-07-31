@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [settings, setSettings] = useState<any>({
-    siteName: 'Archistudio',
+    site_name: 'Archistudio',
     logo: '/logo.svg'
   })
 
@@ -34,10 +34,10 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-archi-dark flex items-center justify-center">
-              <span className="text-white font-serif text-xl font-bold">{settings.siteName.charAt(0)}</span>
+              <span className="text-white font-serif text-xl font-bold">{settings.site_name?.charAt(0) || 'A'}</span>
             </div>
             <span className="font-serif text-xl font-semibold text-archi-dark">
-              {settings.siteName}
+              {settings.site_name || 'Archistudio'}
             </span>
           </Link>
 
