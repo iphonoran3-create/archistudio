@@ -20,7 +20,7 @@ export default function ServicesPage() {
   const [services, setServices] = useState<any[]>([])
 
   useEffect(() => {
-    fetch('/data/services.json')
+    fetch('/api/services')
       .then(res => res.json())
       .then(data => setServices(data))
       .catch(err => console.error('Failed to load services:', err))

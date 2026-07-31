@@ -12,13 +12,9 @@ export default function AdminQuotesPage() {
   const [quotes, setQuotes] = useState<any[]>([])
 
   useEffect(() => {
-    fetch('/data/quotes.json')
+    fetch('/api/quotes')
       .then(res => res.json())
-      .then(data => {
-        // Sort by id (newest first - id is timestamp)
-        const sorted = data.sort((a: any, b: any) => b.id - a.id)
-        setQuotes(sorted)
-      })
+      .then(data => setQuotes(data))
       .catch(err => console.error('Failed to load quotes:', err))
   }, [])
 

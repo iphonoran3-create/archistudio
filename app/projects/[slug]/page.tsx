@@ -70,7 +70,7 @@ export default function ProjectDetailPage() {
   const [project, setProject] = useState<any>(projectData[slug] || projectData['villa-moderne-bordeaux'])
 
   useEffect(() => {
-    fetch('/data/projects.json')
+    fetch('/api/projects')
       .then(res => res.json())
       .then(data => {
         const found = data.find((p: any) => p.slug === slug)

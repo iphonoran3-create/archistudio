@@ -1,11 +1,58 @@
 # Guide de Déploiement - Archistudio
 
-## 🚀 Déploiement sur Vercel
+## 🚀 Déploiement sur Vercel avec Supabase
 
 ### Prérequis
 - Compte Vercel (gratuit)
+- Compte Supabase (gratuit)
 - Compte GitHub (pour le dépôt de code)
 - Node.js 18+ installé localement
+
+## 📦 Configuration Supabase
+
+### Étape 1: Créer un projet Supabase
+
+1. **Allez sur https://supabase.com**
+2. **Cliquez sur "Start your project"**
+3. **Connectez-vous avec GitHub**
+4. **Cliquez sur "New Project"**
+5. **Remplissez les informations** :
+   - **Name**: `archistudio` (ou autre nom)
+   - **Database Password**: Choisissez un mot de passe fort (notez-le !)
+   - **Region**: Choisissez une région proche (ex: EU West)
+6. **Cliquez sur "Create new project"**
+7. **Attendez ~2 minutes** que le projet soit créé
+
+### Étape 2: Obtenir les clés API
+
+1. **Allez sur** : https://supabase.com/dashboard/project/VOTRE_PROJECT_ID/settings/api
+2. **Cherchez "Project API keys"**
+3. **Copiez ces 3 informations** :
+   - **Project URL** (ex: https://xxxxxxxx.supabase.co)
+   - **anon public key** (commence par `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`)
+   - **service_role key** (commence par `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`)
+
+### Étape 3: Créer les tables de base de données
+
+1. **Allez sur** : https://supabase.com/dashboard/project/VOTRE_PROJECT_ID/sql
+2. **Cliquez sur "New Query"**
+3. **Copiez tout le contenu** du fichier `supabase-schema.sql`
+4. **Collez-le dans l'éditeur SQL**
+5. **Cliquez sur "Run"** pour exécuter
+
+Cela créera toutes les tables nécessaires (settings, projects, services, testimonials, team, messages, quotes, appointments).
+
+### Étape 4: Configurer les variables d'environnement
+
+Créez un fichier `.env.local` à la racine du projet avec :
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://votre-projet.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=votre_anon_key
+SUPABASE_SERVICE_ROLE_KEY=votre_service_role_key
+```
+
+## 🚀 Déploiement sur Vercel
 
 ### Étape 1: Préparer le dépôt GitHub
 
@@ -48,9 +95,12 @@ git push -u origin main
    - **Output Directory**: `.next`
    - **Install Command**: `npm install`
 
-4. **Variables d'environnement** (Optionnel pour l'instant)
-   - Ajoutez les variables de `.env.example` si nécessaire
-   - Pour l'instant, le projet fonctionne sans variables
+4. **Ajouter les variables d'environnement**
+   - Cliquez sur "Environment Variables"
+   - Ajoutez les 3 variables de votre fichier `.env.local` :
+     - `NEXT_PUBLIC_SUPABASE_URL`
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+     - `SUPABASE_SERVICE_ROLE_KEY`
 
 5. **Déployer**
    - Cliquez sur "Deploy"
@@ -90,30 +140,32 @@ vercel --prod
    - Connectez-vous avec `admin@demo.com` / `admin123`
    - Vérifiez que les pages admin fonctionnent
    - Testez la modification des paramètres
+   - Vérifiez que les données sont sauvegardées dans Supabase
 
-## ⚠️ Limitations du déploiement actuel
+## ✅ Avantages du déploiement actuel
 
-Le projet utilise actuellement:
+Le projet utilise maintenant:
+- **Base de données Supabase** (persistante et sécurisée)
+- **API routes optimisées** pour Supabase
+- **Gestion d'erreurs** si la base de données n'est pas configurée
+- **Données persistantes** entre les déploiements
+
+## ⚠️ Limitations actuelles
+
 - **Authentification mock** (non sécurisée pour production)
-- **Base de données JSON locale** (non persistante entre redéploiements)
 - **Pas de stockage cloud** pour les fichiers
 
 ### Pour un déploiement production-ready:
 
-1. **Base de données**
-   - Supabase (gratuit et facile)
-   - PostgreSQL sur Vercel Postgres
-   - MongoDB Atlas
-
-2. **Authentification**
+1. **Authentification réelle**
+   - Supabase Auth (intégré à votre projet Supabase)
    - NextAuth.js
    - Clerk
-   - Supabase Auth
 
-3. **Stockage de fichiers**
+2. **Stockage de fichiers**
+   - Supabase Storage (intégré à votre projet Supabase)
    - Cloudinary
    - AWS S3
-   - Vercel Blob Storage
 
 ## 🔧 Configuration avancée
 
@@ -130,17 +182,19 @@ Settings > Analytics
 
 ## 📝 Notes importantes
 
-- Les données JSON dans `public/data/` seront réinitialisées à chaque déploiement
-- Pour persister les données, utilisez une vraie base de données
+- Les données sont maintenant persistantes dans Supabase
 - Les images externes (Unsplash) fonctionnent mais peuvent être lentes
-- Pour un meilleur SEO, utilisez des images hébergées
+- Pour un meilleur SEO, utilisez des images hébergées sur Supabase Storage
+- Gardez vos clés Supabase secrètes, ne les commitez pas sur GitHub
 
 ## 🆘 Support
 
 En cas de problème:
 1. Vérifiez les logs de build dans Vercel
-2. Testez localement avec `npm run build && npm start`
-3. Consultez la documentation Next.js: https://nextjs.org/docs
+2. Vérifiez que les variables d'environnement sont correctement configurées
+3. Testez localement avec `npm run build && npm start`
+4. Consultez la documentation Supabase: https://supabase.com/docs
+5. Consultez la documentation Next.js: https://nextjs.org/docs
 
 ## 🔄 Mises à jour
 

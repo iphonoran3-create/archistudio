@@ -12,13 +12,9 @@ export default function AdminAppointmentsPage() {
   const [appointments, setAppointments] = useState<any[]>([])
 
   useEffect(() => {
-    fetch('/data/appointments.json')
+    fetch('/api/appointments')
       .then(res => res.json())
-      .then(data => {
-        // Sort by id (newest first - id is timestamp)
-        const sorted = data.sort((a: any, b: any) => b.id - a.id)
-        setAppointments(sorted)
-      })
+      .then(data => setAppointments(data))
       .catch(err => console.error('Failed to load appointments:', err))
   }, [])
 

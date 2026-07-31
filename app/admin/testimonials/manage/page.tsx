@@ -26,7 +26,7 @@ export default function AdminTestimonialsManagePage() {
   const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
-    fetch('/data/testimonials.json')
+    fetch('/api/testimonials')
       .then(res => res.json())
       .then(data => setTestimonials(data))
       .catch(err => console.error('Failed to load testimonials:', err))

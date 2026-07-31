@@ -25,7 +25,7 @@ export default function AdminTeamManagePage() {
   const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
-    fetch('/data/team.json')
+    fetch('/api/team')
       .then(res => res.json())
       .then(data => setTeam(data))
       .catch(err => console.error('Failed to load team:', err))

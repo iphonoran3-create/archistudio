@@ -28,7 +28,7 @@ export default function AdminSettingsPage() {
   const [saveMessage, setSaveMessage] = useState('')
 
   useEffect(() => {
-    fetch('/data/settings.json')
+    fetch('/api/settings')
       .then(res => res.json())
       .then(data => setSettings(data))
       .catch(err => console.error('Failed to load settings:', err))

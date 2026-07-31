@@ -1,38 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
+    if (!supabaseAdmin) {
+      return NextResponse.json({ success: false, error: 'Database not configured' }, { status: 500 })
+    }
+
     const data = await request.json()
     
-    const filePath = path.join(process.cwd(), 'public', 'data', 'quotes.json')
-    
     if (Array.isArray(data)) {
-      // Update all quotes
-      fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+      for (const quote of data) {
+        const { error } = await supabaseAdmin
+          .from('quotes')
+          .update({ status: quote.status })
+          .eq('id', quote.id)
+        if (error) throw error
+      }
     } else {
-      // Add new quote
-      const fileContent = fs.readFileSync(filePath, 'utf-8')
-      const quotes = JSON.parse(fileContent)
-      quotes.push(data)
-      fs.writeFileSync(filePath, JSON.stringify(quotes, null, 2), 'utf-8')
+      const { error } = await supabaseAdmin
+        .from('quotes')
+        .insert(data)
+      if (error) throw error
     }
     
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error saving quotes:', error)
-    return NextResponse.json({ success: false }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Failed to save quotes' }, { status: 500 })
   }
 }
 
 export async function GET() {
   try {
-    const filePath = path.join(process.cwd(), 'public', 'data', 'quotes.json')
-    const fileContent = fs.readFileSync(filePath, 'utf-8')
-    const quotes = JSON.parse(fileContent)
+    if (!supabaseAdmin) {
+      return NextResponse.json([])
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from('quotes')
+      .select('*')
+      .order('created_at', { ascending: false })
     
-    return NextResponse.json(quotes)
+    if (error) throw error
+    
+    return NextResponse.json(data || [])
   } catch (error) {
     console.error('Error loading quotes:', error)
     return NextResponse.json([], { status: 500 })

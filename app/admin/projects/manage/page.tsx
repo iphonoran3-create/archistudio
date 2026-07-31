@@ -35,7 +35,7 @@ export default function AdminProjectsManagePage() {
   const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
-    fetch('/data/projects.json')
+    fetch('/api/projects')
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(err => console.error('Failed to load projects:', err))

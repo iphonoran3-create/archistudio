@@ -1,33 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
-    const newAppointment = await request.json()
+    if (!supabaseAdmin) {
+      return NextResponse.json({ success: false, error: 'Database not configured' }, { status: 500 })
+    }
+
+    const data = await request.json()
     
-    const filePath = path.join(process.cwd(), 'public', 'data', 'appointments.json')
-    const fileContent = fs.readFileSync(filePath, 'utf-8')
-    const appointments = JSON.parse(fileContent)
-    
-    appointments.push(newAppointment)
-    
-    fs.writeFileSync(filePath, JSON.stringify(appointments, null, 2), 'utf-8')
+    if (Array.isArray(data)) {
+      for (const appointment of data) {
+        const { error } = await supabaseAdmin
+          .from('appointments')
+          .update({ status: appointment.status })
+          .eq('id', appointment.id)
+        if (error) throw error
+      }
+    } else {
+      const { error } = await supabaseAdmin
+        .from('appointments')
+        .insert(data)
+      if (error) throw error
+    }
     
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Error saving appointment:', error)
-    return NextResponse.json({ success: false }, { status: 500 })
+    console.error('Error saving appointments:', error)
+    return NextResponse.json({ success: false, error: 'Failed to save appointments' }, { status: 500 })
   }
 }
 
 export async function GET() {
   try {
-    const filePath = path.join(process.cwd(), 'public', 'data', 'appointments.json')
-    const fileContent = fs.readFileSync(filePath, 'utf-8')
-    const appointments = JSON.parse(fileContent)
+    if (!supabaseAdmin) {
+      return NextResponse.json([])
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from('appointments')
+      .select('*')
+      .order('created_at', { ascending: false })
     
-    return NextResponse.json(appointments)
+    if (error) throw error
+    
+    return NextResponse.json(data || [])
   } catch (error) {
     console.error('Error loading appointments:', error)
     return NextResponse.json([], { status: 500 })

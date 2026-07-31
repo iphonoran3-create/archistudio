@@ -1,19 +1,51 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
+    if (!supabaseAdmin) {
+      return NextResponse.json({ success: false, error: 'Database not configured' }, { status: 500 })
+    }
+
     const testimonials = await request.json()
     
-    const filePath = path.join(process.cwd(), 'public', 'data', 'testimonials.json')
-    const fileContent = JSON.stringify(testimonials, null, 2)
-    
-    fs.writeFileSync(filePath, fileContent, 'utf-8')
+    if (Array.isArray(testimonials)) {
+      for (const testimonial of testimonials) {
+        const { error } = await supabaseAdmin
+          .from('testimonials')
+          .upsert({ ...testimonial, updated_at: new Date().toISOString() })
+        if (error) throw error
+      }
+    } else {
+      const { error } = await supabaseAdmin
+        .from('testimonials')
+        .insert({ ...testimonials, created_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+      if (error) throw error
+    }
     
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error saving testimonials:', error)
-    return NextResponse.json({ success: false }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Failed to save testimonials' }, { status: 500 })
+  }
+}
+
+export async function GET() {
+  try {
+    if (!supabaseAdmin) {
+      return NextResponse.json([])
+    }
+
+    const { data, error } = await supabaseAdmin
+      .from('testimonials')
+      .select('*')
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    
+    return NextResponse.json(data || [])
+  } catch (error) {
+    console.error('Error loading testimonials:', error)
+    return NextResponse.json([], { status: 500 })
   }
 }

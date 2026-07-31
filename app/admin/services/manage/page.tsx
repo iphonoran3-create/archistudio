@@ -25,7 +25,7 @@ export default function AdminServicesManagePage() {
   const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
-    fetch('/data/services.json')
+    fetch('/api/services')
       .then(res => res.json())
       .then(data => setServices(data))
       .catch(err => console.error('Failed to load services:', err))

@@ -12,13 +12,9 @@ export default function AdminMessagesPage() {
   const [messages, setMessages] = useState<any[]>([])
 
   useEffect(() => {
-    fetch('/data/messages.json')
+    fetch('/api/messages')
       .then(res => res.json())
-      .then(data => {
-        // Sort by id (newest first - id is timestamp)
-        const sorted = data.sort((a: any, b: any) => b.id - a.id)
-        setMessages(sorted)
-      })
+      .then(data => setMessages(data))
       .catch(err => console.error('Failed to load messages:', err))
   }, [])
 
