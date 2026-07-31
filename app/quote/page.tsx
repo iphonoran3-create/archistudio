@@ -62,18 +62,16 @@ export default function QuotePage() {
     
     try {
       const quoteData = {
-        id: Date.now(),
-        client: `${formData.firstName} ${formData.lastName}`,
+        name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
         phone: formData.phone,
         city: formData.city,
         project: projectTypes.find(t => t.id === formData.projectType)?.label || formData.projectType,
-        surfaceArea: formData.surfaceArea,
+        surface_area: formData.surfaceArea,
         budget: budgetRanges.find(b => b.id === formData.budget)?.label || formData.budget,
         description: formData.description,
-        preferredStartDate: formData.preferredStartDate,
-        status: 'new',
-        date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })
+        preferred_start_date: formData.preferredStartDate,
+        status: 'new'
       }
 
       const response = await fetch('/api/quotes', {
