@@ -62,7 +62,7 @@ export default function QuotePage() {
     
     try {
       const quoteData = {
-        name: `${formData.firstName} ${formData.lastName}`,
+        client: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
         phone: formData.phone,
         city: formData.city,

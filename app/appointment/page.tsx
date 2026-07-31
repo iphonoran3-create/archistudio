@@ -63,13 +63,12 @@ export default function AppointmentPage() {
     
     try {
       const appointmentData = {
-        name: `${formData.firstName} ${formData.lastName}`,
+        title: `${appointmentTypes.find(t => t.id === formData.appointmentType)?.label} - ${formData.firstName} ${formData.lastName}`,
+        client: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
         phone: formData.phone,
         date: formData.date,
         time: formData.time,
-        type: formData.appointmentType,
-        project_type: formData.projectType,
         description: formData.description,
         status: 'pending'
       }
