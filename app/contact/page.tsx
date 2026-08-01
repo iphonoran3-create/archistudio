@@ -284,7 +284,7 @@ export default function ContactPage() {
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
     <div className="bg-gray-200 rounded-lg h-96 w-full overflow-hidden">
       
-      {<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36616.967230807975!2d-0.5996543696116213!3d35.678272230148735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7e6353bd16c81b%3A0xdfb3d57e1f00b255!2sAZ%20Mall%20Grand%20Oran!5e0!3m2!1sfr!2sdz!4v1784993512574!5m2!1sfr!2sdz" width="600" height="450" style= {{border:0 }} allowFullScreen= {true} loading="lazy" ></iframe>}
+      {<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36616.967230807975!2d-0.5996543696116213!3d35.678272230148735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7e6353bd16c81b%3A0xdfb3d57e1f00b255!2sAZ%20Mall%20Grand%20Oran!5e0!3m2!1sfr!2sdz!4v1784993512574!5m2!1sfr!2sdz" width="1200" height="450" style= {{border:0 }} allowFullScreen= {true} loading="lazy" ></iframe>}
       <iframe 
         src="https://google.com..." 
         width="100%" 
