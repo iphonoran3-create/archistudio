@@ -28,14 +28,11 @@ export default function ContactPage() {
     
     try {
       const messageData = {
-        id: Date.now(),
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         subject: formData.subject,
-        message: formData.message,
-        date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }),
-        read: false
+        message: formData.message
       }
 
       const response = await fetch('/api/messages', {
