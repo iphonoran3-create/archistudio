@@ -19,7 +19,8 @@ export default function AdminServicesManagePage() {
     id: 0,
     title: '',
     description: '',
-    icon: 'home'
+    icon: 'home',
+    image: ''
   })
   const [isSaving, setIsSaving] = useState(false)
 
@@ -36,7 +37,8 @@ export default function AdminServicesManagePage() {
       id: services.length + 1,
       title: '',
       description: '',
-      icon: 'home'
+      icon: 'home',
+      image: ''
     })
     setIsDialogOpen(true)
   }
@@ -162,6 +164,16 @@ export default function AdminServicesManagePage() {
                         <option value="layers">Layers</option>
                         <option value="clipboard">Clipboard</option>
                       </select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="image">URL de l'image</Label>
+                      <Input
+                        id="image"
+                        value={formData.image}
+                        onChange={(e) => handleChange('image', e.target.value)}
+                        placeholder="https://..."
+                      />
                     </div>
 
                     <div className="flex justify-end gap-2">

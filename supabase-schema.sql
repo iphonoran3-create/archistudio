@@ -38,6 +38,7 @@ CREATE TABLE services (
   title TEXT NOT NULL,
   description TEXT,
   icon TEXT,
+  image TEXT,
   features TEXT[],
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
