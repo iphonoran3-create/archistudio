@@ -12,17 +12,15 @@ import Link from 'next/link'
 
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState({
-    siteName: 'Archistudio',
-    siteDescription: 'Architecture contemporaine et design innovant',
+    site_name: 'Archistudio',
+    description: 'Architecture contemporaine et design innovant',
     logo: '/logo.svg',
-    contactEmail: 'contact@archistudio.fr',
-    contactPhone: '+33 1 23 45 67 89',
+    email: 'contact@archistudio.fr',
+    phone: '+33 1 23 45 67 89',
     address: '123 Rue de l\'Architecture, 75001 Paris, France',
-    socialMedia: {
-      facebook: 'https://facebook.com/archistudio',
-      instagram: 'https://instagram.com/archistudio',
-      linkedin: 'https://linkedin.com/company/archistudio'
-    }
+    facebook: 'https://facebook.com/archistudio',
+    instagram: 'https://instagram.com/archistudio',
+    linkedin: 'https://linkedin.com/company/archistudio'
   })
   const [isSaving, setIsSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState('')
@@ -65,7 +63,7 @@ export default function AdminSettingsPage() {
   const handleSocialChange = (platform: string, value: string) => {
     setSettings(prev => ({
       ...prev,
-      socialMedia: { ...prev.socialMedia, [platform]: value }
+      [platform]: value
     }))
   }
 
@@ -100,22 +98,22 @@ export default function AdminSettingsPage() {
 
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="siteName">Nom du site *</Label>
+                  <Label htmlFor="site_name">Nom du site *</Label>
                   <Input
-                    id="siteName"
-                    value={settings.siteName}
-                    onChange={(e) => handleChange('siteName', e.target.value)}
+                    id="site_name"
+                    value={settings.site_name}
+                    onChange={(e) => handleChange('site_name', e.target.value)}
                     className="mt-2"
                     required
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="siteDescription">Description du site</Label>
+                  <Label htmlFor="description">Description du site</Label>
                   <Textarea
-                    id="siteDescription"
-                    value={settings.siteDescription}
-                    onChange={(e) => handleChange('siteDescription', e.target.value)}
+                    id="description"
+                    value={settings.description}
+                    onChange={(e) => handleChange('description', e.target.value)}
                     className="mt-2"
                     rows={3}
                   />
@@ -143,24 +141,24 @@ export default function AdminSettingsPage() {
 
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="contactEmail">Email de contact *</Label>
+                  <Label htmlFor="email">Email de contact *</Label>
                   <Input
-                    id="contactEmail"
+                    id="email"
                     type="email"
-                    value={settings.contactEmail}
-                    onChange={(e) => handleChange('contactEmail', e.target.value)}
+                    value={settings.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
                     className="mt-2"
                     required
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="contactPhone">Téléphone</Label>
+                  <Label htmlFor="phone">Téléphone</Label>
                   <Input
-                    id="contactPhone"
+                    id="phone"
                     type="tel"
-                    value={settings.contactPhone}
-                    onChange={(e) => handleChange('contactPhone', e.target.value)}
+                    value={settings.phone}
+                    onChange={(e) => handleChange('phone', e.target.value)}
                     className="mt-2"
                   />
                 </div>
@@ -194,7 +192,7 @@ export default function AdminSettingsPage() {
                   <Input
                     id="facebook"
                     type="url"
-                    value={settings.socialMedia.facebook}
+                    value={settings.facebook}
                     onChange={(e) => handleSocialChange('facebook', e.target.value)}
                     className="mt-2"
                     placeholder="https://facebook.com/..."
@@ -209,7 +207,7 @@ export default function AdminSettingsPage() {
                   <Input
                     id="instagram"
                     type="url"
-                    value={settings.socialMedia.instagram}
+                    value={settings.instagram}
                     onChange={(e) => handleSocialChange('instagram', e.target.value)}
                     className="mt-2"
                     placeholder="https://instagram.com/..."
@@ -224,7 +222,7 @@ export default function AdminSettingsPage() {
                   <Input
                     id="linkedin"
                     type="url"
-                    value={settings.socialMedia.linkedin}
+                    value={settings.linkedin}
                     onChange={(e) => handleSocialChange('linkedin', e.target.value)}
                     className="mt-2"
                     placeholder="https://linkedin.com/..."
