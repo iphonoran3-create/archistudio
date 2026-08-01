@@ -52,9 +52,21 @@ export default function AdminServicesManagePage() {
   const handleDelete = async (id: number) => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer ce service ?')) return
     
-    const updatedServices = services.filter(s => s.id !== id)
-    await saveServices(updatedServices)
-    setServices(updatedServices)
+    try {
+      const response = await fetch(`/api/services?id=${id}`, {
+        method: 'DELETE'
+      })
+      
+      if (response.ok) {
+        const updatedServices = services.filter(s => s.id !== id)
+        setServices(updatedServices)
+      } else {
+        alert('Erreur lors de la suppression')
+      }
+    } catch (error) {
+      console.error('Error deleting service:', error)
+      alert('Erreur lors de la suppression')
+    }
   }
 
   const handleSave = async (e: React.FormEvent) => {

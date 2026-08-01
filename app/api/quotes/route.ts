@@ -31,6 +31,33 @@ export async function POST(request: NextRequest) {
   }
 }
 
+export async function DELETE(request: NextRequest) {
+  try {
+    if (!supabaseAdmin) {
+      return NextResponse.json({ success: false, error: 'Database not configured' }, { status: 500 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+    
+    if (!id) {
+      return NextResponse.json({ success: false, error: 'ID is required' }, { status: 400 })
+    }
+
+    const { error } = await supabaseAdmin
+      .from('quotes')
+      .delete()
+      .eq('id', id)
+    
+    if (error) throw error
+    
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Error deleting quote:', error)
+    return NextResponse.json({ success: false, error: 'Failed to delete quote' }, { status: 500 })
+  }
+}
+
 export async function GET() {
   try {
     if (!supabaseAdmin) {

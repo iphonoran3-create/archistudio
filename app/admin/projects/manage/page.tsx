@@ -64,9 +64,21 @@ export default function AdminProjectsManagePage() {
   const handleDelete = async (id: number) => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) return
     
-    const updatedProjects = projects.filter(p => p.id !== id)
-    await saveProjects(updatedProjects)
-    setProjects(updatedProjects)
+    try {
+      const response = await fetch(`/api/projects?id=${id}`, {
+        method: 'DELETE'
+      })
+      
+      if (response.ok) {
+        const updatedProjects = projects.filter(p => p.id !== id)
+        setProjects(updatedProjects)
+      } else {
+        alert('Erreur lors de la suppression')
+      }
+    } catch (error) {
+      console.error('Error deleting project:', error)
+      alert('Erreur lors de la suppression')
+    }
   }
 
   const handleSave = async (e: React.FormEvent) => {
