@@ -102,21 +102,8 @@ export default function LoginPage() {
                 </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t">
-                <p className="text-sm text-gray-500 text-center mb-4">
-                  Comptes de démonstration :
-                </p>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between text-gray-600">
-                    <span>Client :</span>
-                    <span className="font-mono"> </span>
-                  </div>
-                  <div className="flex justify-between text-gray-600">
-                    <span>Admin :</span>
-                    <span className="font-mono">  </span>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
           </div>
         </div>
