@@ -109,11 +109,11 @@ export default function LoginPage() {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between text-gray-600">
                     <span>Client :</span>
-                    <span className="font-mono">client@demo.com / demo123</span>
+                    <span className="font-mono"> </span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Admin :</span>
-                    <span className="font-mono">admin@demo.com / admin123</span>
+                    <span className="font-mono">  </span>
                   </div>
                 </div>
               </div>
