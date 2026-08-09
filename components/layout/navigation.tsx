@@ -33,9 +33,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-archi-dark flex items-center justify-center">
-              <span className="text-white font-serif text-xl font-bold">{settings.site_name?.charAt(0) || 'A'}</span>
-            </div>
+            <img
+              src={settings.logo || '/images/logo.jpg'}
+              alt={settings.site_name || 'Archistudio'}
+              className="h-10 w-auto"
+            />
             <span className="font-serif text-xl font-semibold text-archi-dark">
               {settings.site_name || 'Archistudio'}
             </span>

@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 z-10" />
         <img
-          src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1920&q=80"
+          src="/images/hero.png"
           alt="Modern Architecture"
           className="w-full h-full object-cover"
         />

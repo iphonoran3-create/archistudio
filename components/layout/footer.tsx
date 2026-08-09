@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react
 export default function Footer() {
   const [settings, setSettings] = useState<any>({
     site_name: 'Archistudio',
+    logo: '/images/logo.jpg',
     description: 'Architecture, conception et visualisation 3D pour donner vie à vos projets.',
     email: 'contact@archistudio.fr',
     phone: '+33 1 23 45 67 89',
@@ -30,9 +31,11 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-white flex items-center justify-center">
-                <span className="text-archi-dark font-serif text-xl font-bold">{settings.site_name?.charAt(0) || 'A'}</span>
-              </div>
+              <img
+                src={settings.logo || '/images/logo.jpg'}
+                alt={settings.site_name || 'Archistudio'}
+                className="h-10 w-auto"
+              />
               <span className="font-serif text-xl font-semibold">
                 {settings.site_name || 'Archistudio'}
               </span>
