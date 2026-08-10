@@ -34,13 +34,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex items-center space-x-4 mb-6">
               <img
                 src={settings.logo || '/images/logo.jpg'}
                 alt={settings.site_name || 'Archistudio'}
-                className="h-16 w-auto"
+                className="h-24 w-auto"
               />
-              <span className="font-serif text-2xl font-semibold">
+              <span className="font-serif text-3xl font-semibold">
                 {settings.site_name || 'Archistudio'}
               </span>
             </div>
