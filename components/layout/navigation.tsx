@@ -46,7 +46,7 @@ export default function Navigation() {
             <img
               src={settings.logo || '/images/logo.jpg'}
               alt={settings.site_name || 'Archistudio'}
-              className="h-20 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
 
             <span className="text-2xl font-semibold text-gray-900 whitespace-nowrap">
