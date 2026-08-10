@@ -7,14 +7,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react
 export default function Footer() {
   const [settings, setSettings] = useState<any>({
     site_name: 'Archistudio',
-    logo: '/images/logo.jpg',
-    description: 'Architecture, conception et visualisation 3D pour donner vie à vos projets.',
-    email: 'contact@archistudio.fr',
-    phone: '+33 1 23 45 67 89',
-    address: '123 Rue de l\'Architecture, 75001 Paris, France',
-    facebook: '#',
-    instagram: '#',
-    linkedin: '#'
+    logo: '/images/logo.png'
   })
 
   useEffect(() => {
@@ -22,7 +15,7 @@ export default function Footer() {
       .then(res => res.json())
       .then(data => {
         // Force logo to always be the correct path
-        data.logo = '/images/logo.jpg'
+        data.logo = '/images/logo.png'
         setSettings(data)
       })
       .catch(err => console.error('Failed to load settings:', err))

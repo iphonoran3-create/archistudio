@@ -10,14 +10,14 @@ export default function Navigation() {
 
   const [settings, setSettings] = useState({
     site_name: 'Archistudio',
-    logo: '/images/logo.jpg',
+    logo: '/images/logo.png',
   })
 
   useEffect(() => {
     fetch('/api/settings')
       .then((res) => res.json())
       .then((data) => {
-        data.logo = '/images/logo.jpg'
+        data.logo = '/images/logo.png'
         setSettings(data)
       })
       .catch((err) => console.error('Failed to load settings:', err))

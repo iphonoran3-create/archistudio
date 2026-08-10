@@ -28,7 +28,7 @@ export async function GET() {
     if (!supabaseAdmin) {
       return NextResponse.json({
         site_name: 'Archistudio',
-        logo: '/images/logo.jpg',
+        logo: '/images/logo.png',
         description: 'Architecture moderne et design innovant',
         email: 'contact@archistudio.com',
         phone: '+33 1 23 45 67 89',
@@ -41,13 +41,13 @@ export async function GET() {
       .select('*')
       .eq('id', 1)
       .single()
-    
+
     if (error) {
       // If no settings exist, return default
       if (error.code === 'PGRST116') {
         return NextResponse.json({
           site_name: 'Archistudio',
-          logo: '/images/logo.jpg',
+          logo: '/images/logo.png',
           description: 'Architecture moderne et design innovant',
           email: 'contact@archistudio.com',
           phone: '+33 1 23 45 67 89',
@@ -56,12 +56,12 @@ export async function GET() {
       }
       throw error
     }
-    
+
     // Ensure logo is set to custom logo
     if (!data.logo) {
-      data.logo = '/images/logo.jpg'
+      data.logo = '/images/logo.png'
     }
-    
+
     return NextResponse.json(data)
   } catch (error) {
     console.error('Error loading settings:', error)
