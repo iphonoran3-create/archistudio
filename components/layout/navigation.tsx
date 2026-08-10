@@ -9,7 +9,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [settings, setSettings] = useState<any>({
     site_name: 'Archistudio',
-    logo: '/logo.svg'
+    logo: '/images/logo.jpg'
   })
 
   useEffect(() => {
