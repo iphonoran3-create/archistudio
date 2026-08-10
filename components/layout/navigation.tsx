@@ -33,27 +33,27 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-3">
             <img
               src={settings.logo || '/images/logo.jpg'}
               alt={settings.site_name || 'Archistudio'}
-              className="h-10 w-auto"
+              className="h-16 w-auto"
             />
-            <span className="font-serif text-xl font-semibold text-archi-dark">
+            <span className="font-serif text-2xl font-semibold text-archi-dark">
               {settings.site_name || 'Archistudio'}
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-archi-dark transition-colors font-medium"
+                className="text-gray-700 hover:text-archi-dark transition-colors font-medium text-lg"
               >
                 {link.label}
               </Link>
