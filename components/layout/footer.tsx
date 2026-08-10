@@ -38,9 +38,9 @@ export default function Footer() {
               <img
                 src={settings.logo || '/images/logo.jpg'}
                 alt={settings.site_name || 'Archistudio'}
-                className="h-24 w-auto"
+                className="h-20 w-auto"
               />
-              <span className="font-serif text-3xl font-semibold">
+              <span className="font-serif text-2xl font-semibold">
                 {settings.site_name || 'Archistudio'}
               </span>
             </div>

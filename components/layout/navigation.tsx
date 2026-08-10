@@ -2,25 +2,25 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { Menu, X, Phone, Mail } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [settings, setSettings] = useState<any>({
+
+  const [settings, setSettings] = useState({
     site_name: 'Archistudio',
-    logo: '/images/logo.jpg'
+    logo: '/images/logo.jpg',
   })
 
   useEffect(() => {
     fetch('/api/settings')
-      .then(res => res.json())
-      .then(data => {
-        // Force logo to always be the correct path
+      .then((res) => res.json())
+      .then((data) => {
         data.logo = '/images/logo.jpg'
         setSettings(data)
       })
-      .catch(err => console.error('Failed to load settings:', err))
+      .catch((err) => console.error('Failed to load settings:', err))
   }, [])
 
   const navLinks = [
@@ -32,86 +32,140 @@ export default function Navigation() {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center h-24">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* Header principal */}
+        <div className="h-28 flex items-center justify-between gap-8">
+
+          {/* Logo + nom du site */}
+          <Link
+            href="/"
+            className="flex items-center gap-4 shrink-0"
+          >
             <img
               src={settings.logo || '/images/logo.jpg'}
               alt={settings.site_name || 'Archistudio'}
-              className="h-24 w-auto"
+              className="h-20 w-auto object-contain"
             />
-            <span className="font-serif text-3xl font-semibold text-archi-dark">
+
+            <span className="text-2xl font-semibold text-gray-900 whitespace-nowrap">
               {settings.site_name || 'Archistudio'}
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-archi-dark transition-colors font-medium text-lg"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex items-center space-x-4">
+          {/* Navigation Desktop */}
+          <div className="hidden md:flex items-center justify-end gap-8 flex-1">
+
+            {/* Liens */}
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-700 hover:text-archi-dark transition-colors font-medium text-lg whitespace-nowrap"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Boutons */}
+            <div className="flex items-center gap-4 shrink-0">
               <Link href="/quote">
-                <Button variant="architectOutline" size="sm">
+                <Button
+                  variant="architectOutline"
+                  size="lg"
+                  className="whitespace-nowrap"
+                >
                   Demander un devis
                 </Button>
               </Link>
+
               <Link href="/appointment">
-                <Button variant="architect" size="sm">
+                <Button
+                  variant="architect"
+                  size="lg"
+                  className="whitespace-nowrap"
+                >
                   Prendre RDV
                 </Button>
               </Link>
-              <Link href="/login" className="text-gray-700 hover:text-archi-dark">
+
+              <Link
+                href="/login"
+                className="text-gray-700 hover:text-archi-dark transition-colors font-medium whitespace-nowrap ml-2"
+              >
                 Connexion
               </Link>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Bouton Mobile */}
           <button
-            className="md:hidden"
+            type="button"
+            className="md:hidden flex items-center justify-center p-2 text-gray-700"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Navigation Mobile */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-5 border-t border-gray-100">
+            <div className="flex flex-col gap-4">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-archi-dark transition-colors font-medium"
+                  className="text-gray-700 hover:text-archi-dark transition-colors font-medium py-1"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
-                <Link href="/quote" onClick={() => setIsOpen(false)}>
-                  <Button variant="architectOutline" size="sm" className="w-full">
+
+              <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
+
+                <Link
+                  href="/quote"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full"
+                >
+                  <Button
+                    variant="architectOutline"
+                    size="sm"
+                    className="w-full"
+                  >
                     Demander un devis
                   </Button>
                 </Link>
-                <Link href="/appointment" onClick={() => setIsOpen(false)}>
-                  <Button variant="architect" size="sm" className="w-full">
+
+                <Link
+                  href="/appointment"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full"
+                >
+                  <Button
+                    variant="architect"
+                    size="sm"
+                    className="w-full"
+                  >
                     Prendre RDV
                   </Button>
                 </Link>
-                <Link href="/login" onClick={() => setIsOpen(false)} className="text-center">
+
+                <Link
+                  href="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="text-center text-gray-700 hover:text-archi-dark font-medium py-2"
+                >
                   Connexion
                 </Link>
+
               </div>
             </div>
           </div>
