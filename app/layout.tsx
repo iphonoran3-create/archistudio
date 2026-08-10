@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "Archistudio - Architecture & Design",
   description: "Architecture, conception et visualisation 3D pour donner vie à vos projets.",
   keywords: ["architecture", "design", "construction", "maison", "villa", "bâtiment", "rénovation", "3D"],
+  other: {
+    'font-display': 'swap',
+  },
 }
 
 export default function RootLayout({
