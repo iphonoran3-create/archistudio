@@ -57,11 +57,6 @@ export async function GET() {
       throw error
     }
 
-    // Ensure logo is set to custom logo
-    if (!data.logo) {
-      data.logo = '/images/logo.png'
-    }
-
     return NextResponse.json(data)
   } catch (error) {
     console.error('Error loading settings:', error)

@@ -14,8 +14,6 @@ export default function Footer() {
     fetch('/api/settings')
       .then(res => res.json())
       .then(data => {
-        // Force logo to always be the correct path
-        data.logo = '/images/logo.png'
         setSettings(data)
       })
       .catch(err => console.error('Failed to load settings:', err))

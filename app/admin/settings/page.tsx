@@ -14,7 +14,7 @@ export default function AdminSettingsPage() {
   const [settings, setSettings] = useState({
     site_name: 'Archistudio',
     description: 'Architecture contemporaine et design innovant',
-    logo: '/images/logo.jpg',
+    logo: '/images/logo.png',
     email: 'contact@archistudio.fr',
     phone: '+33 1 23 45 67 89',
     address: '123 Rue de l\'Architecture, 75001 Paris, France',

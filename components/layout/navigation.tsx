@@ -17,7 +17,6 @@ export default function Navigation() {
     fetch('/api/settings')
       .then((res) => res.json())
       .then((data) => {
-        data.logo = '/images/logo.png'
         setSettings(data)
       })
       .catch((err) => console.error('Failed to load settings:', err))
