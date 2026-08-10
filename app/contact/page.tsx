@@ -127,7 +127,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-archi-dark mb-1">Téléphone</h3>
                     <p className="text-gray-600">
                       <a href="tel:+33123456789" className="hover:text-archi-accent transition-colors">
-                        +33 1 23 45 67 89
+                       +213770030723
                       </a>
                     </p>
                   </div>
