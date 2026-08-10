@@ -28,6 +28,7 @@ export async function GET() {
     if (!supabaseAdmin) {
       return NextResponse.json({
         site_name: 'Archistudio',
+        logo: '/images/logo.jpg',
         description: 'Architecture moderne et design innovant',
         email: 'contact@archistudio.com',
         phone: '+33 1 23 45 67 89',
@@ -46,6 +47,7 @@ export async function GET() {
       if (error.code === 'PGRST116') {
         return NextResponse.json({
           site_name: 'Archistudio',
+          logo: '/images/logo.jpg',
           description: 'Architecture moderne et design innovant',
           email: 'contact@archistudio.com',
           phone: '+33 1 23 45 67 89',
@@ -53,6 +55,11 @@ export async function GET() {
         })
       }
       throw error
+    }
+    
+    // Ensure logo is set to custom logo
+    if (!data.logo) {
+      data.logo = '/images/logo.jpg'
     }
     
     return NextResponse.json(data)
