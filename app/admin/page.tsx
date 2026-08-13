@@ -55,7 +55,7 @@ export default function AdminDashboard() {
                 <MessageSquare size={20} />
               </Button>
               <Link href="/">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button variant="outline" className="border-white text-black hover:bg-white/10">
                   Déconnexion
                 </Button>
               </Link>
