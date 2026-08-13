@@ -2,14 +2,12 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
-  // Check for Supabase session in cookies
-  const sessionCookie = req.cookies.get('sb-archistudio-auth-token') ||
-                        req.cookies.get('supabase-auth-token') ||
-                        req.cookies.get('sb-access-token')
+  // Check for custom auth cookie
+  const authCookie = req.cookies.get('archistudio-auth')
 
   // Protect admin routes
   if (req.nextUrl.pathname.startsWith('/admin') && req.nextUrl.pathname !== '/login') {
-    if (!sessionCookie) {
+    if (!authCookie || authCookie.value !== 'true') {
       return NextResponse.redirect(new URL('/login', req.url))
     }
   }

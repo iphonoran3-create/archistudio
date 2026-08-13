@@ -46,6 +46,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password,
     })
     if (error) throw error
+
+    // Set custom auth cookie for middleware
+    document.cookie = 'archistudio-auth=true; path=/; max-age=604800'
   }
 
   const signUp = async (email: string, password: string) => {
@@ -59,6 +62,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut()
     if (error) throw error
+
+    // Remove custom auth cookie
+    document.cookie = 'archistudio-auth=; path=/; max-age=0'
   }
 
   return (
