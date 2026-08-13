@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user, signOut } = useAuth()
 
   const [settings, setSettings] = useState({
     site_name: 'Archistudio',
@@ -91,12 +93,22 @@ export default function Navigation() {
                 </Button>
               </Link>
 
-              <Link
-                href="/login"
-                className="text-gray-700 hover:text-archi-dark transition-colors font-medium whitespace-nowrap ml-2"
-              >
-                Connexion
-              </Link>
+              {user ? (
+                <Button
+                  onClick={() => signOut()}
+                  variant="ghost"
+                  className="text-gray-700 hover:text-archi-dark font-medium whitespace-nowrap ml-2"
+                >
+                  Déconnexion
+                </Button>
+              ) : (
+                <Link
+                  href="/login"
+                  className="text-gray-700 hover:text-archi-dark transition-colors font-medium whitespace-nowrap ml-2"
+                >
+                  Connexion
+                </Link>
+              )}
             </div>
           </div>
 

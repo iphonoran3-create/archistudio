@@ -1,38 +1,44 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Navigation from '@/components/layout/navigation'
 import Footer from '@/components/layout/footer'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Mail, Lock, ArrowRight } from 'lucide-react'
+import { Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const router = useRouter()
+  const { signIn } = useAuth()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    // Simulation de connexion
-    setTimeout(() => {
+    setError('')
+
+    try {
+      await signIn(email, password)
+      router.push('/admin')
+      router.refresh()
+    } catch (error: any) {
+      setError(error.message || 'Erreur lors de la connexion')
+    } finally {
       setIsLoading(false)
-      // Redirection selon le type d'utilisateur
-      if (email === 'admin@demo.com') {
-        window.location.href = '/admin'
-      } else {
-        window.location.href = '/dashboard'
-      }
-    }, 1000)
+    }
   }
 
   return (
     <main className="min-h-screen bg-archi-cream">
       <Navigation />
-      
+
       <section className="pt-32 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-md mx-auto">
@@ -41,8 +47,15 @@ export default function LoginPage() {
                 Connexion
               </h1>
               <p className="text-gray-600 text-center mb-8">
-                Accédez à votre espace client ou administrateur
+                Accédez à votre espace administrateur
               </p>
+
+              {error && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                  <AlertCircle className="text-red-600 shrink-0 mt-0.5" size={20} />
+                  <p className="text-red-700 text-sm">{error}</p>
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -73,18 +86,9 @@ export default function LoginPage() {
                       className="pl-10"
                       placeholder="••••••••"
                       required
+                      minLength={6}
                     />
                   </div>
-                </div>
-
-                <div className="flex items-center justify-between text-sm">
-                  <label className="flex items-center">
-                    <input type="checkbox" className="mr-2" />
-                    <span className="text-gray-600">Se souvenir de moi</span>
-                  </label>
-                  <Link href="/forgot-password" className="text-archi-accent hover:underline">
-                    Mot de passe oublié ?
-                  </Link>
                 </div>
 
                 <Button type="submit" variant="architect" size="lg" className="w-full" disabled={isLoading}>
@@ -94,16 +98,13 @@ export default function LoginPage() {
               </form>
 
               <div className="mt-6 text-center">
-                <p className="text-gray-600">
-                  Pas encore de compte ?{' '}
-                  <Link href="/register" className="text-archi-accent hover:underline font-semibold">
-                    Créere un compte
+                <p className="text-gray-600 text-sm">
+                  Mot de passe oublié ?{' '}
+                  <Link href="/forgot-password" className="text-archi-accent hover:underline">
+                    Réinitialiser
                   </Link>
                 </p>
               </div>
-
-
-
             </div>
           </div>
         </div>
