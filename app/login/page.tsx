@@ -25,10 +25,13 @@ export default function LoginPage() {
     setError('')
 
     try {
+      console.log('Tentative de connexion avec:', email)
       await signIn(email, password)
+      console.log('Connexion réussie')
       router.push('/admin')
       router.refresh()
     } catch (error: any) {
+      console.error('Erreur de connexion:', error)
       setError(error.message || 'Erreur lors de la connexion')
     } finally {
       setIsLoading(false)
