@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Users, Building2, Calendar, FileText, MessageSquare, TrendingUp, DollarSign, Clock, Settings, Star, Layers } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useAuth } from '@/contexts/AuthContext'
 
 const mockStats = {
   totalClients: 45,
@@ -35,6 +37,15 @@ const recentQuoteRequests = [
 ]
 
 export default function AdminDashboard() {
+  const router = useRouter()
+  const { signOut } = useAuth()
+
+  const handleSignOut = async () => {
+    await signOut()
+    router.push('/')
+    router.refresh()
+  }
+
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -54,11 +65,13 @@ export default function AdminDashboard() {
               <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
                 <MessageSquare size={20} />
               </Button>
-              <Link href="/">
-                <Button variant="outline" className="border-white text-black hover:bg-white/10">
-                  Déconnexion
-                </Button>
-              </Link>
+              <Button
+                onClick={handleSignOut}
+                variant="outline"
+                className="border-white text-black hover:bg-white/10"
+              >
+                Déconnexion
+              </Button>
             </div>
           </div>
         </div>
