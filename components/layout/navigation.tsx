@@ -51,7 +51,7 @@ export default function Navigation() {
             />
 
             <span className="text-2xl font-semibold text-gray-900 whitespace-nowrap">
-              {settings.site_name || 'Archistudio'}
+              {settings.site_name }
             </span>
           </Link>
 
