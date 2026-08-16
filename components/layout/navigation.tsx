@@ -9,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext'
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const { user, signOut } = useAuth()
+  const [isLoading, setIsLoading] = useState(true)
 
   const [settings, setSettings] = useState({
     site_name: 'Archistudio',
@@ -20,8 +21,12 @@ export default function Navigation() {
       .then((res) => res.json())
       .then((data) => {
         setSettings(data)
+        setIsLoading(false)
       })
-      .catch((err) => console.error('Failed to load settings:', err))
+      .catch((err) => {
+        console.error('Failed to load settings:', err)
+        setIsLoading(false)
+      })
   }, [])
 
   const navLinks = [
@@ -50,9 +55,15 @@ export default function Navigation() {
               className="h-24 w-auto object-contain"
             />
 
-            <span className="text-2xl font-semibold text-gray-900 whitespace-nowrap">
-              {settings.site_name }
-            </span>
+            {!isLoading ? (
+              <span className="text-2xl font-semibold text-gray-900 whitespace-nowrap">
+                {settings.site_name }
+              </span>
+            ) : (
+              <span className="text-2xl font-semibold text-gray-900 whitespace-nowrap animate-pulse">
+                Chargement...
+              </span>
+            )}
           </Link>
 
           {/* Navigation Desktop */}
