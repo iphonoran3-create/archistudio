@@ -46,7 +46,7 @@ export default function Navigation() {
           >
             <img
               src={settings.logo || '/images/logo.jpg'}
-              alt={settings.site_name || 'Archistudio'}
+              alt={settings.site_name }
               className="h-24 w-auto object-contain"
             />
 
